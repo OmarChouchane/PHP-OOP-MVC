@@ -1,6 +1,5 @@
 <?php
 if(isset($_POST['register-submit'])) {
-    echo"yes";
     
     // Grabbing the data from the form
     $username = $_POST['username'];

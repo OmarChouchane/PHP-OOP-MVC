@@ -10,7 +10,7 @@ class LoginContr extends Login{
         $this->password = $password;
     }
 
-    public function registerUser() {
+    public function loginUser() {
         if ($this->emptyInput() === false) {
             header("location:../index.php?error=emptyinput");
             exit();

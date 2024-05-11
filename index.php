@@ -15,20 +15,20 @@
 	<body>
 	<section class="ftco-section">
 		<div class="container">
-			<div class="row justify-content-center">
-				<?php
-					session_start();
-					if (isset($_SESSION['user_id'])) {
-						echo '<div class="alert alert-success" role="alert">
+			<?php
+				session_start();
+				if (isset($_SESSION['user_id'])) {
+					echo '<div class="alert alert-success" role="alert">
 						You are logged in!
 						</div>';
-					}
-					else {
-						echo '<div class="alert alert-danger" role="alert">
+				}
+				else {
+					echo '<div class="alert alert-danger" role="alert">
 						You are logged out!
 						</div>';
-					}
-				?>
+				}
+			?>
+			<div class="row justify-content-center">
 				<div class="col-md-12 col-lg-10">
 					<div class="wrap d-md-flex">
 						<div class="login-wrap p-4 p-md-5">
@@ -50,7 +50,7 @@
 
 
 
-							<form action="includes/login.inc.php" class="signin-form">
+							<form action="includes/login.inc.php" id="login-form" method="POST" class="signin-form">
 								<div class="form-group mb-3">
 									<label class="label" for="name">Username</label>
 									<input type="text" class="form-control" placeholder="Username" name="username" required>
