@@ -17,7 +17,7 @@ if(isset($_POST['register-submit'])) {
     $register->registerUser();
 
     // Going back to front page
-    header("location: ../index.php?erroe=none");
+    header("location: ../index.php?error=none");
 
 }
 

@@ -16,6 +16,19 @@
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
+				<?php
+					session_start();
+					if (isset($_SESSION['user_id'])) {
+						echo '<div class="alert alert-success" role="alert">
+						You are logged in!
+						</div>';
+					}
+					else {
+						echo '<div class="alert alert-danger" role="alert">
+						You are logged out!
+						</div>';
+					}
+				?>
 				<div class="col-md-12 col-lg-10">
 					<div class="wrap d-md-flex">
 						<div class="login-wrap p-4 p-md-5">
@@ -34,6 +47,9 @@
 									</p>
 								</div>
 							</div>
+
+
+
 							<form action="includes/login.inc.php" class="signin-form">
 								<div class="form-group mb-3">
 									<label class="label" for="name">Username</label>
@@ -44,8 +60,7 @@
 									<input type="password" class="form-control" placeholder="Password" name="password" required>
 								</div>
 								<div class="form-group">
-									<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign
-										In</button>
+									<input type="submit" name="login-submit" class="form-control btn btn-primary rounded submit px-3" value="Log in">
 								</div>
 								<div class="form-group d-md-flex">
 									<div class="w-50 text-left">
@@ -59,6 +74,9 @@
 									</div>
 								</div>
 							</form>
+
+
+
 							<p class="text-center">Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p>
 						</div>
 
@@ -80,6 +98,9 @@
 									</p>
 								</div>
 							</div>
+
+
+
 							<form action="includes/register.inc.php" id="register-form" method="POST" class="signin-form">
 								<div class="form-group mb-3">
 									<label class="label" for="name">Username</label>
@@ -108,6 +129,9 @@
 									</div>
 								</div>
 							</form>
+
+
+							
 							<p class="text-center">Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p>
 						</div>
 					</div>
