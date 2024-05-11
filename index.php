@@ -1,3 +1,10 @@
+<?php
+	
+session_start();
+
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,17 +23,12 @@
 	<section class="ftco-section">
 		<div class="container">
 			<?php
-				session_start();
 				if (isset($_SESSION['user_id'])) {
 					echo '<div class="alert alert-success" role="alert">
 						You are logged in!
-						</div>';
+						</div><p class="text-center"><a data-toggle="tab" href="includes/logout.inc.php">Log Out</a></p>';
 				}
 				else {
-					echo '<div class="alert alert-danger" role="alert">
-						You are logged out!
-						</div>';
-				}
 			?>
 			<div class="row justify-content-center">
 				<div class="col-md-12 col-lg-10">
@@ -78,6 +80,7 @@
 
 
 							<p class="text-center">Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p>
+							
 						</div>
 
 
@@ -139,11 +142,7 @@
 			</div>
 		</div>
 	</section>
-
-	<script src="js/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
+<?php } ?>
 
 	</body>
 </html>
