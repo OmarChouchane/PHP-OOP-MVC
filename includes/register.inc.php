@@ -8,6 +8,7 @@ if(isset($_POST['register-submit'])) {
     $password = $_POST['password'];
 
     // Instantiate RegisterContr class
+    include "../classes/dbh.classes.php";
     include "../classes/register.classes.php";
     include "../classes/register-contr.classes.php";
     $register = new RegisterContr($username, $password);

@@ -12,6 +12,30 @@ class RegisterContr {
         $this->$password = $password;
     }
 
+    private function registerUser() {
+        if ($this->emptyInput() === false) {
+            header("location:../index.php?error=emptyinput");
+            exit();
+        }
+        if ($this->invalidUsername() === false) {
+            header("location:../index.php?error=invalidusername");
+            exit();
+        }
+        if ($this->invalidEmail() === false) {
+            header("location:../index.php?error=invalidemail");
+            exit();
+        }
+        if ($this->invalidPassword() === false) {
+            header("location:../index.php?error=invalidpassword");
+            exit();
+        }
+        if ($this->existingUser() === false) {
+            header("location:../index.php?error=existinguser");
+            exit();
+        }
+        $this->setUser($this->$username, $this->$email, $this->$password);
+    }
+
     private function emptyInput() {
         $result;
         if(empty($this->$username) || empty($this->$password)) {
@@ -48,6 +72,17 @@ class RegisterContr {
     private function invalidPassword() {
         $result;
         if(!preg_match("/^[a-zA-Z0-9]*$/", $this->$password)) {
+            $result = false;
+        }
+        else {
+            $result = true;
+        }
+        return $result;
+    }
+
+    private function existingUser() {
+        $result;
+        if(!$this->checkUser($this->$username, $this->$email)) {
             $result = false;
         }
         else {
