@@ -1,18 +1,18 @@
 <?php
 
-class RegisterContr {
+class RegisterContr extends Register{
 
     private $username;
     private $email;
     private $password;
 
     public function __construct($username, $email, $password) {
-        $this->$username = $username;
-        $this->$email = $email;
-        $this->$password = $password;
+        $this->username = $username;
+        $this->email = $email;
+        $this->password = $password;
     }
 
-    private function registerUser() {
+    public function registerUser() {
         if ($this->emptyInput() === false) {
             header("location:../index.php?error=emptyinput");
             exit();
@@ -33,12 +33,12 @@ class RegisterContr {
             header("location:../index.php?error=existinguser");
             exit();
         }
-        $this->setUser($this->$username, $this->$email, $this->$password);
+        $this->setUser($this->username, $this->email, $this->password);
     }
 
     private function emptyInput() {
         $result;
-        if(empty($this->$username) || empty($this->$password)) {
+        if(empty($this->username) || empty($this->password)) {
             $result = false;
         }
         else {
@@ -49,7 +49,7 @@ class RegisterContr {
 
     private function invalidUsername() {
         $result;
-        if(!preg_match("/^[a-zA-Z0-9]*$/", $this->$username)) {
+        if(!preg_match("/^[a-zA-Z0-9]*$/", $this->username)) {
             $result = false;
         }
         else {
@@ -60,7 +60,7 @@ class RegisterContr {
 
     private function invalidEmail() {
         $result;
-        if(!filter_var($this->$email, FILTER_VALIDATE_EMAIL)) {
+        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             $result = false;
         }
         else {
@@ -71,7 +71,7 @@ class RegisterContr {
 
     private function invalidPassword() {
         $result;
-        if(!preg_match("/^[a-zA-Z0-9]*$/", $this->$password)) {
+        if(!preg_match("/^[a-zA-Z0-9]*$/", $this->password)) {
             $result = false;
         }
         else {
@@ -82,7 +82,7 @@ class RegisterContr {
 
     private function existingUser() {
         $result;
-        if(!$this->checkUser($this->$username, $this->$email)) {
+        if($this->checkUser($this->username, $this->email)) {
             $result = false;
         }
         else {

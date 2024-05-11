@@ -7,7 +7,7 @@ class Register extends Dbh {
 
         $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
-        if ($stmt->execute(arra($username,$email,$hashedPwd))) {
+        if (!$stmt->execute([$username,$email,$hashedPwd])) {
             $stmt = null;
             header("location:../index.php?error=stmtfailed");
             exit();
@@ -17,9 +17,9 @@ class Register extends Dbh {
     }
 
     protected function checkUser ($username,$email) {
-        $stmt = $this->connect()->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
+        $stmt = $this->connect()->prepare("SELECT * FROM users WHERE users_username = ? OR users_email = ?");
 
-        if ($stmt->execute(arra($username,$email))) {
+        if (!$stmt->execute([$username,$email])) {
             $stmt = null;
             header("location:../index.php?error=stmtfailed");
             exit();
